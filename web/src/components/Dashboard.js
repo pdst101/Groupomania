@@ -37,7 +37,9 @@ const Dashboard = ({ setAuth }) => {
     try {
       const response = await fetch("http://localhost:5000/posts");
       const jsonData = await response.json();
-      setPosts(jsonData);
+      //a and b compare posts ID
+      const sortedData = jsonData.sort((a, b) => a.post_id - b.post_id);
+      setPosts(sortedData);
     } catch (err) {
       console.error(err.message);
     }
