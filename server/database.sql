@@ -7,21 +7,19 @@ CREATE TABLE users(
     user_name VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL,
-    user_admin BOOLEAN NOT NULL
+    user_admin BOOLEAN NOT NULL,
+    user_last_log TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
-
---insert fake users
-INSERT INTO users (user_name, user_email, user_password, user_admin) VALUES ('natalia', 'natalia@email.com', '123', 'false');
-
 
 --create table for posts
 CREATE TABLE posts(
     post_id SERIAL PRIMARY KEY,
     content VARCHAR(255) NOT NULL,
-    author_id VARCHAR(255) NOT NULL
+    author_id VARCHAR(255) NOT NULL,
+    post_time TIMESTAMP NOT NULL
 );
 
---create table for comments
+--create table for comments      file_name VARCHAR(255) NOT NULL
 CREATE TABLE comments(
     comment_id SERIAL PRIMARY KEY,
     content VARCHAR(255) NOT NULL,

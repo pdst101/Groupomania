@@ -6,6 +6,7 @@ const pool = require("./db");
 //         MIDDLEWARE
 app.use(express.json()); //access to req.body
 app.use(cors());
+app.use(express.static("./images"));
 
 //           ROUTES
 // LOGIN/REG

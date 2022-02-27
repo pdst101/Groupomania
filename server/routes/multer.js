@@ -1,12 +1,14 @@
 const { application } = require("express");
 const router = require("./jwtAuth");
 const multer = require("multer");
+const express = require("express");
 
+//Use static for FE
+router.use("/static", express.static("./images")); //i.e. http://localhost:5000/multer/static/image-1645983613779.jpeg
 //Rename file using node file system
-
 const fileStorage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "../images");
+    callback(null, "./images");
   },
   filename: (req, file, callback) => {
     const ext = file.mimetype.split("/")[1];
@@ -27,7 +29,7 @@ const upload = multer({ storage: fileStorage, fileFilter: isImage });
 router.post("/", upload.single("image"), (req, res) => {
   let ext = req.file.mimetype.split("/")[1];
   let fileName = `image-${Date.now()}.${ext}`;
-  res.send("200");
+  res.send("Image uploaded successfully!");
 });
 
 module.exports = router;
