@@ -6,7 +6,8 @@ router.post("/", async (req, res) => {
   try {
     const { content, authorId } = req.body;
     const newPost = await pool.query(
-      "INSERT INTO posts (content, author_id) VALUES ($1, $2) RETURNING *",
+      //NOW() add timestamp to last login
+      "INSERT INTO posts (content, author_id, post_time) VALUES ($1, $2, NOW()) RETURNING *",
       [content, authorId]
     );
     res.json(newPost.rows[0]);

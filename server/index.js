@@ -22,6 +22,6 @@ app.use("/posts", require("./routes/posts"));
 app.use("/comments", require("./routes/comments"));
 
 //multer
-app.use("/upload", require("./routes/multer"));
+app.use("/multer", require("./routes/multer"));
 
 app.listen(5000, () => console.log("server is running on port 5000"));

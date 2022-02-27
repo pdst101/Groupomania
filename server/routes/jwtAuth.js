@@ -69,6 +69,11 @@ router.post("/login", validInfo, async (req, res) => {
 //Verify token when refreshing React app
 router.get("/is-verify", authorization, async (req, res) => {
   try {
+    //Update user timestamp
+    const tstamp = await pool.query(
+      "UPDATE users SET user_last_log = NOW() WHERE user_id = $1",
+      [req.user]
+    );
     res.json(true);
   } catch (err) {
     console.error(err.message);

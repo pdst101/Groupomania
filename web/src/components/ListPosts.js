@@ -37,6 +37,11 @@ const ListPosts = (props) => {
                   <td>
                     <CommentPost post={post} />
                   </td>
+                  <td>
+                    {post.post_time > localStorage.getItem("user_last_log")
+                      ? "new"
+                      : ""}
+                  </td>
                 </tr>
               );
             }
@@ -47,6 +52,11 @@ const ListPosts = (props) => {
                 <td>-</td>
                 <td>
                   <CommentPost post={post} />
+                </td>
+                <td>
+                  {post.post_time > localStorage.getItem("user_last_log")
+                    ? "new"
+                    : ""}
                 </td>
               </tr>
             );

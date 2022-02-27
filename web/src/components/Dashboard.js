@@ -20,6 +20,7 @@ const Dashboard = ({ setAuth }) => {
       setName(parseRes.user_name);
       localStorage.setItem("user_id", parseRes.user_id);
       localStorage.setItem("user_name", parseRes.user_name);
+      localStorage.setItem("user_last_log", parseRes.user_last_log);
       setLoggedUser(parseRes.user_id);
     } catch (err) {
       console.error(err.message);
@@ -38,7 +39,7 @@ const Dashboard = ({ setAuth }) => {
       const response = await fetch("http://localhost:5000/posts");
       const jsonData = await response.json();
       //a and b compare posts ID
-      const sortedData = jsonData.sort((a, b) => a.post_id - b.post_id);
+      const sortedData = jsonData.sort((a, b) => b.post_id - a.post_id);
       setPosts(sortedData);
     } catch (err) {
       console.error(err.message);
@@ -62,7 +63,7 @@ const Dashboard = ({ setAuth }) => {
   return (
     <Fragment>
       <div className="container d-flex">
-        <h1 className="mr-auto p-2">Hello {name}</h1>
+        <h1 className="mr-auto p-2 ">Hello {name}</h1>
         <button className="btn btn-primary p-2" onClick={(e) => logout(e)}>
           Logout
         </button>
