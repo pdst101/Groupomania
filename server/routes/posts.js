@@ -4,11 +4,11 @@ const pool = require("../db");
 //create post
 router.post("/", async (req, res) => {
   try {
-    const { content, authorId } = req.body;
+    const { content, authorId, fileName } = req.body;
     const newPost = await pool.query(
       //NOW() add timestamp to last login
-      "INSERT INTO posts (content, author_id, post_time) VALUES ($1, $2, NOW()) RETURNING *",
-      [content, authorId]
+      "INSERT INTO posts (content, author_id, post_time, file_name) VALUES ($1, $2, NOW(), $3) RETURNING *",
+      [content, authorId, fileName]
     );
     res.json(newPost.rows[0]);
   } catch (err) {

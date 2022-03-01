@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import icon from "./images/icon.png";
 
 //COMPONENTS
 import InputPost from "./InputPost";
@@ -60,13 +61,35 @@ const Dashboard = ({ setAuth }) => {
     getName();
     getPosts();
   }, []);
+  const deleteAccount = async () => {
+    try {
+      const userId = localStorage.getItem("user_id");
+      const deletePost = await fetch(`http://localhost:5000/delete/${userId}`, {
+        method: "DELETE",
+      });
+      setAuth(false);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
   return (
     <Fragment>
-      <div className="container d-flex">
-        <h1 className="mr-auto p-2 ">Hello {name}</h1>
-        <button className="btn btn-primary p-2" onClick={(e) => logout(e)}>
-          Logout
-        </button>
+      <div className="container d-flex row">
+        <h1 className="mr-auto p-2 text-secondary col-3">Hello {name}</h1>
+        <div className="col-6">
+          <img className="logo img-fluid" src={icon}></img>
+        </div>
+        <div className="col-3">
+          <button className="btn btn-primary p-2" onClick={(e) => logout(e)}>
+            Logout
+          </button>
+          <button
+            className="btn btn-danger p-2"
+            onClick={(e) => deleteAccount(e)}
+          >
+            Delete Account
+          </button>
+        </div>
       </div>
       <InputPost />
       <ListPosts

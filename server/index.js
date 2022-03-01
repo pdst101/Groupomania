@@ -6,7 +6,6 @@ const pool = require("./db");
 //         MIDDLEWARE
 app.use(express.json()); //access to req.body
 app.use(cors());
-app.use(express.static("./images"));
 
 //           ROUTES
 // LOGIN/REG
@@ -14,6 +13,8 @@ app.use(express.static("./images"));
 app.use("/auth", require("./routes/jwtAuth"));
 //dashboard route
 app.use("/dashboard", require("./routes/dashboard"));
+//Delete account
+app.use("/delete", require("./routes/deleteAccount"));
 
 // POST
 //create, get all, get 1, edit, delete routes

@@ -1,9 +1,28 @@
+body {
+  background: -webkit-linear-gradient(-90deg, #949494 10%, #efefef 90%);
+  background: linear-gradient(-90deg, #949494 10%, #efefef 90%);
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
+  pointer-events: none;
+}
+
+.post-content {
+  font-size: 1.2em;
+}
+
+.new-post {
+  position: absolute;
+  border: 5px solid rgb(117, 114, 114);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   pointer-events: none;
 }
 
@@ -26,6 +45,22 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.singlePost {
+  border-bottom: 2px solid #dee2e6;
+  background-color: #dee2e6;
+  min-height: 200px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.table-headers {
+  border-bottom: 2px solid #949494;
+  border-radius: 5px;
+  background-color: #afabab;
+  color: white;
 }
 
 @keyframes App-logo-spin {
