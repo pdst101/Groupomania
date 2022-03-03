@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import EditComment from "./EditComment";
 
 const ListComments = (e) => {
   const [comments, setComments] = useState([]);
@@ -10,7 +11,8 @@ const ListComments = (e) => {
         "http://localhost:5000/comments?id=" + e.post
       );
       const jsonData = await response.json();
-      setComments(jsonData);
+      const sortedData = jsonData.sort((a, b) => b.comment_id - a.comment_id);
+      setComments(sortedData);
     } catch (err) {
       console.error(err.message);
     }
@@ -19,11 +21,12 @@ const ListComments = (e) => {
     getComments();
   }, []);
   //delete post
-  const deleteComment = async () => {
+  const deleteComment = async (e) => {
     try {
-      const deleteComment = await fetch(`http://localhost:5000/comments/`, {
+      const deleteComment = await fetch(`http://localhost:5000/comments/${e}`, {
         method: "DELETE",
       });
+      window.location = "/dashboard/";
     } catch (err) {
       console.error(err.message);
     }
@@ -47,9 +50,10 @@ const ListComments = (e) => {
                 </strong>
               </div>
               <div>
-                <button className="btn btn-warning mx-3">Edit</button>
+                {/* <button className="btn btn-warning mx-3">Edit</button> */}
+                <EditComment comment={comment} />
                 <button
-                  onClick={(e) => deleteComment(e)}
+                  onClick={(e) => deleteComment(comment.comment_id)}
                   className="btn btn-danger mx-3"
                 >
                   Delete

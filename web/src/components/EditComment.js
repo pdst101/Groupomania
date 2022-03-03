@@ -9,7 +9,7 @@ const EditComment = ({ comment }) => {
     try {
       const body = { content };
       const response = await fetch(
-        `http://localhost:5000/comments/${comment.post_id}`,
+        `http://localhost:5000/comments/${comment.comment_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -21,21 +21,20 @@ const EditComment = ({ comment }) => {
       console.error(err.message);
     }
   };
-  ///tu
   return (
     <Fragment>
       <button
         type="button"
         className="btn btn-primary"
         data-toggle="modal"
-        data-target={`#id${post.post_id}`}
+        data-target={`#id${comment.comment_id}`}
       >
         Edit
       </button>
       <div
         className="modal"
-        id={`id${post.post_id}`}
-        onClick={() => setContent(post.content)}
+        id={`id${comment.comment_id}`}
+        onClick={() => setContent(comment.content)}
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -45,7 +44,7 @@ const EditComment = ({ comment }) => {
                 type="button"
                 className="close"
                 data-dismiss="modal"
-                onClick={() => setContent(post.content)}
+                onClick={() => setContent(comment.content)}
               >
                 &times;
               </button>
@@ -71,7 +70,7 @@ const EditComment = ({ comment }) => {
                 type="button"
                 className="btn btn-danger"
                 data-dismiss="modal"
-                onClick={() => setContent(post.content)}
+                onClick={() => setContent(comment.content)}
               >
                 Close
               </button>
