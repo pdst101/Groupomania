@@ -16,12 +16,17 @@ const ListPosts = (props) => {
               return (
                 <div className="singlePost row" key={post.post_id}>
                   <div className="col-12">
+                    <div>
+                      {post.post_time > localStorage.getItem("user_last_log")
+                        ? "New post!"
+                        : ""}
+                    </div>
                     <img
                       className=""
                       src={`http://localhost:5000/multer/static/${post.file_name}`}
                       style={
                         post.file_name != ""
-                          ? { display: "block", margin: "auto", width: "50%" }
+                          ? { display: "block", margin: "auto", width: "75%" }
                           : { display: "none" }
                       }
                     />
@@ -43,7 +48,7 @@ const ListPosts = (props) => {
                   </div>
                   <div>
                     {post.post_time > localStorage.getItem("user_last_log")
-                      ? "new"
+                      ? "New post!"
                       : ""}
                   </div>
                 </div>
@@ -52,11 +57,16 @@ const ListPosts = (props) => {
             return (
               <div className="singlePost row" key={post.post_id}>
                 <div className="col-12 m-auto">
+                  <div>
+                    {post.post_time > localStorage.getItem("user_last_log")
+                      ? "New post!"
+                      : ""}
+                  </div>
                   <img
                     src={`http://localhost:5000/multer/static/${post.file_name}`}
                     style={
                       post.file_name != ""
-                        ? { display: "block", margin: "auto", width: "50%" }
+                        ? { display: "block", margin: "auto", width: "75%" }
                         : { display: "none" }
                     }
                   />
@@ -66,11 +76,6 @@ const ListPosts = (props) => {
                 <div className="col-6"></div>
                 <div className="col-12">
                   <CommentPost post={post} />
-                </div>
-                <div>
-                  {post.post_time > localStorage.getItem("user_last_log")
-                    ? "new"
-                    : ""}
                 </div>
               </div>
             );

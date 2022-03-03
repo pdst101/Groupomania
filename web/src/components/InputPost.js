@@ -57,20 +57,20 @@ const InputPost = () => {
         method="POST"
         encType="multipart/form-data"
       >
-        <div className="col-3">
+        <div className="col-lg-3 col-6">
           <input type="file" onChange={fileOnChange} />
         </div>
         <TextField
           id="outlined-multiline-static"
           label="Text content"
-          className="form-control w-75 col-7 h-auto"
+          className="form-control w-75 col-lg-7 col-12 h-auto"
           multiline
           maxRows={5}
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
         <button
-          className="btn btn-success col-1 h-25 mx-4"
+          className="btn btn-success col-lg-1 col-md-2 col-4 h-25 mx-4"
           onClick={onSubmitForm}
         >
           Add

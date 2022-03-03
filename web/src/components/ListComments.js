@@ -67,7 +67,9 @@ const ListComments = (e) => {
               key={comment.comment_id}
               className="border border-secondary rounded m-3 p-2"
             >
-              <div>{comment.content}</div>
+              <div>
+                <strong>{comment.content}</strong>
+              </div>
               <div>
                 by{" "}
                 <strong>

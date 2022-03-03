@@ -81,12 +81,8 @@ const Dashboard = ({ setAuth }) => {
     <Fragment>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand>
-            <img
-              className="logo img-fluid col-4"
-              object-fit="cover"
-              src={icon}
-            ></img>
+          <Navbar.Brand className="col-md-6 col-8">
+            <img className="logo img-fluid" object-fit="cover" src={icon}></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -100,7 +96,7 @@ const Dashboard = ({ setAuth }) => {
         </Container>
       </Navbar>
       <div className="container d-flex row">
-        <h1 className="mr-auto p-2 text-secondary col-3">Hello {name}</h1>
+        <h1 className="mr-auto p-2 text-secondary col-12">Hello {name}!</h1>
       </div>
       <InputPost />
       <ListPosts
