@@ -29,4 +29,47 @@ router.get("/", async (req, res) => {
   }
 });
 
+//get comment
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const comment = await pool.query(
+      "SELECT * FROM comments WHERE comment_id = $1",
+      [id]
+    );
+    res.json(comment.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//Edit comment
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { content } = req.body;
+    const editComment = await pool.query(
+      "UPDATE comments SET content = $1 WHERE comment_id = $2",
+      [content, id]
+    );
+    res.json("Comment was successfully updated!");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//Delete comment
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteComment = await pool.query(
+      "DELETE FROM comments WHERE comment_id = $1",
+      [id]
+    );
+    res.json("Comment was successfully deleted!");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 module.exports = router;

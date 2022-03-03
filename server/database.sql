@@ -13,7 +13,7 @@ CREATE TABLE users(
 --create table for posts
 CREATE TABLE posts(
     post_id SERIAL PRIMARY KEY,
-    content VARCHAR(255) NOT NULL,
+    content VARCHAR(1000) NOT NULL,
     author_id VARCHAR(255) NOT NULL,
     post_time TIMESTAMP NOT NULL,
     file_name VARCHAR(255)

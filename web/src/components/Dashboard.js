@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import icon from "./images/icon.png";
+import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 
 //COMPONENTS
 import InputPost from "./InputPost";
@@ -61,12 +62,16 @@ const Dashboard = ({ setAuth }) => {
     getName();
     getPosts();
   }, []);
+  //Delete account
   const deleteAccount = async () => {
     try {
       const userId = localStorage.getItem("user_id");
-      const deletePost = await fetch(`http://localhost:5000/delete/${userId}`, {
-        method: "DELETE",
-      });
+      const deleteAccount = await fetch(
+        `http://localhost:5000/delete/${userId}`,
+        {
+          method: "DELETE",
+        }
+      );
       setAuth(false);
     } catch (err) {
       console.error(err.message);
@@ -74,22 +79,28 @@ const Dashboard = ({ setAuth }) => {
   };
   return (
     <Fragment>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand>
+            <img
+              className="logo img-fluid col-4"
+              object-fit="cover"
+              src={icon}
+            ></img>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link onClick={(e) => logout(e)}>Logout</Nav.Link>
+              <Nav.Link onClick={(e) => deleteAccount(e)}>
+                Dalete Account
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <div className="container d-flex row">
         <h1 className="mr-auto p-2 text-secondary col-3">Hello {name}</h1>
-        <div className="col-6">
-          <img className="logo img-fluid" src={icon}></img>
-        </div>
-        <div className="col-3">
-          <button className="btn btn-primary p-2" onClick={(e) => logout(e)}>
-            Logout
-          </button>
-          <button
-            className="btn btn-danger p-2"
-            onClick={(e) => deleteAccount(e)}
-          >
-            Delete Account
-          </button>
-        </div>
       </div>
       <InputPost />
       <ListPosts

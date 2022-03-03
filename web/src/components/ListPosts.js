@@ -10,14 +10,6 @@ const ListPosts = (props) => {
   return (
     <Fragment>
       <div className="mt-5 text-center">
-        {/* <div>
-          <div className="row my-3 table-headers p-3">
-            <div className="col-6">Content</div>
-            <div className="col-2">Edit</div>
-            <div className="col-2">Delete</div>
-            <div className="col-2">Comments</div>
-          </div>
-        </div> */}
         <div>
           {props.posts.map((post) => {
             if (post.author_id === props.loggedUser) {
@@ -33,7 +25,6 @@ const ListPosts = (props) => {
                           : { display: "none" }
                       }
                     />
-
                     <div className="post-content">{post.content}</div>
                   </div>
                   <div className="col-6">

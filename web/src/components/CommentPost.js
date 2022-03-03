@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import ListComments from "./ListComments";
+import TextField from "@mui/material/TextField";
 
 const CommentPost = ({ post }) => {
   const [comment, setComment] = useState("");
@@ -8,7 +9,7 @@ const CommentPost = ({ post }) => {
     e.preventDefault();
     try {
       const userName = localStorage.getItem("user_name");
-      const authorId = post.author_id;
+      const authorId = localStorage.getItem("user_id");
       const postId = post.post_id;
       const body = { comment, authorId, postId, userName };
       const response = await fetch("http://localhost:5000/comments", {
@@ -24,7 +25,38 @@ const CommentPost = ({ post }) => {
 
   return (
     <Fragment>
-      <button
+      <div>
+        <h4 className="text-center mt-5">Add Comment</h4>
+      </div>
+      <div>
+        <TextField
+          id="outlined-multiline-static"
+          label="Comment content"
+          className="form-control w-75 col-7 h-auto"
+          multiline
+          maxRows={5}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+      </div>
+      <div>
+        <button
+          type="button"
+          className="btn btn-success h-25 mx-4"
+          onClick={onSubmitForm}
+        >
+          Add Comment
+        </button>
+        <ListComments post={post.post_id} />
+      </div>
+    </Fragment>
+  );
+};
+
+export default CommentPost;
+
+{
+  /* <button
         type="button"
         className="btn btn-info"
         data-toggle="modal"
@@ -79,9 +111,5 @@ const CommentPost = ({ post }) => {
             </div>
           </div>
         </div>
-      </div>
-    </Fragment>
-  );
-};
-
-export default CommentPost;
+      </div> */
+}

@@ -20,6 +20,7 @@ app.use("/delete", require("./routes/deleteAccount"));
 //create, get all, get 1, edit, delete routes
 app.use("/posts", require("./routes/posts"));
 
+//COMMENTS
 //create, get all comments
 app.use("/comments", require("./routes/comments"));
 

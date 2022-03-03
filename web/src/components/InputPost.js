@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import TextField from "@mui/material/TextField";
 
 const InputPost = () => {
   const [content, setContent] = useState("");
@@ -59,13 +60,19 @@ const InputPost = () => {
         <div className="col-3">
           <input type="file" onChange={fileOnChange} />
         </div>
-        <input
-          type="text"
+        <TextField
+          id="outlined-multiline-static"
+          label="Text content"
           className="form-control w-75 col-7 h-auto"
+          multiline
+          maxRows={5}
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <button className="btn btn-success col-2" onClick={onSubmitForm}>
+        <button
+          className="btn btn-success col-1 h-25 mx-4"
+          onClick={onSubmitForm}
+        >
           Add
         </button>
       </form>
