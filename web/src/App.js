@@ -44,6 +44,7 @@ function App() {
   return (
     <Fragment>
       <Router>
+        <Redirect from="/" to="/dashboard" />
         <div className="container">
           <Switch>
             <Route
